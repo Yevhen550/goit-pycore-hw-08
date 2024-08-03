@@ -64,7 +64,8 @@ class Record:
         return None
 
     def __str__(self):
-        return f"Contact name: {self.name.value}, phones: {'; '.join(p.value for p in self.phones)}"
+        return f"""Contact name: {self.name.value},
+    phones: {'; '.join(p.value for p in self.phones)}"""
 
 
 class AddressBook:
@@ -143,7 +144,8 @@ def show_phone(args, book: AddressBook):
     record = book.find(name)
     if record is None:
         return "Contact not found."
-    return f"{record.name.value}'s phone numbers: {', '.join(phone.value for phone in record.phones)}"
+    return f"""{record.name.value}'s phone numbers:
+{', '.join(phone.value for phone in record.phones)}"""
 
 
 @input_error
@@ -158,7 +160,10 @@ def show_all(book: AddressBook):
             if record.birthday
             else "No birthday"
         )
-        result.append(f"{record.name.value}: Phones: {phones}, Birthday: {birthday}")
+        result.append(
+            f"""{record.name.value}:
+                      Phones: {phones}, Birthday: {birthday}"""
+        )
     return "\n".join(result)
 
 
@@ -178,7 +183,8 @@ def show_birthday(args, book):
     record = book.find(name)
     if record is None or record.birthday is None:
         return "Birthday not found."
-    return f"{record.name.value}'s birthday is {record.birthday.value.strftime('%d.%m.%Y')}."
+    return f"""{record.name.value}'s birthday is
+{record.birthday.value.strftime('%d.%m.%Y')}."""
 
 
 @input_error
@@ -210,7 +216,8 @@ def main():
         elif command == "hello":
             print("How can I help you?")
             print(
-                "\n Add  \n Change  \n Phone \n All \n Add-birthday \n Show-birthday \n birthdays \n Exit - Close \n"
+                """\n Add  \n Change  \n Phone \n All \n Add-birthday \n
+                Show-birthday \n birthdays \n Exit - Close \n"""
             )
         elif command == "add":
             print(add_contact(args, book))
